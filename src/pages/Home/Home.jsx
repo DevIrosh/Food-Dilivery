@@ -3,12 +3,14 @@ import './Home.css'
 import { Header } from '../../components/Navbar/Header/Header'
 import { ExploreMenu } from '../../components/ExploreMenu/ExploreMenu'
 
+
 export const Home = () => {
+
+  const [category, setCategory] = React.useState('All');
   return (
     <div>
         <Header />
-        <ExploreMenu />
-    
+        <ExploreMenu  category={category} setCategory={setCategory} />       
     </div>
   )
 }
