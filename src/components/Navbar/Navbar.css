@@ -1,0 +1,65 @@
+.navbar{
+    padding: 20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo{
+    width: 150px;
+    
+}
+
+.nav-links{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 18px;
+}
+
+/* right side of navbar get center*/
+.navbar-right{
+    display: flex;
+    align-items: center;
+    gap: 40px;  
+}   
+
+.navbar button{
+    padding: 10px 20px;
+    border: none;
+    background-color: #ff5722;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.navbar button:hover{
+    background-color: #e64a19;
+}
+
+/* active link styling */
+.navbar .active{
+    padding-bottom: 2px;
+    border-bottom: 2px solid #ff5722    ;
+}
+
+/* cursor pointer on list items */
+.navbar li{
+    cursor: pointer;
+}   
+
+/* basket and search icon styling */
+.navbar-search{
+    position: relative;
+}
+
+.navbar-search .dot{
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    min-width: 10px;
+    min-height: 10px;
+    background-color: #ff5722;
+    border-radius: 5px;
+}
