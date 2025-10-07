@@ -50,7 +50,9 @@ import remove_icon_red from './remove_icon_red.png'
 import app_store from './app_store.png'
 import play_store from './play_store.png'
 import linkedin_icon from './linkedin_icon.png'
-import facebook_icon from './facebook_icon.png'
+// contains a space in its name: 'facebook _icon.png'
+import facebook_icon from './facebook _icon.png'
+import instagram_icon from './instagram_icon.png'
 import twitter_icon from './twitter_icon.png'
 import cross_icon from './cross_icon.png'
 import selector_icon from './selector_icon.png'
@@ -73,6 +75,7 @@ export const assets = {
     play_store,
     linkedin_icon,
     facebook_icon,
+    instagram_icon,
     twitter_icon,
     cross_icon,
     selector_icon,

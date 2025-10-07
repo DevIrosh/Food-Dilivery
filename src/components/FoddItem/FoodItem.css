@@ -67,5 +67,89 @@
 .foodItemImage{
     display: block;
     margin-bottom: 8px;
+    position: relative; /* allow overlaying add/counter */
 }
 /* removed add/counter styles - simplified card */
+
+.foodItemAddIcon{
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    background: rgba(255,255,255,0.85);
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+.foodItemAddIcon[alt]{
+    /* ensure the image inside the small box scales down */
+    object-fit: contain;
+}
+
+
+
+.food-items-counter{
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* space between buttons and number */
+    background: rgba(255,255,255,0.95);
+    padding: 4px 8px;
+    border-radius: 20px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    z-index: 6;
+}
+
+.food-items-counter button{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: #f5f5f5;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.food-items-counter span{
+    min-width: 22px;
+    text-align: center;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.foodItemAddBtn{
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: rgba(255,255,255,0.85);
+    color: #333;
+    font-size: 14px;
+    line-height: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+    z-index: 12;
+}
+
+.foodItemAddBtn:hover{
+    background: rgba(255,255,255,0.98);
+}

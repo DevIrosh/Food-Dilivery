@@ -10,7 +10,7 @@ export const Navbar = () => {
 
   return (
     <div className="navbar">
-        <img src={assets.logo} alt="logo" />
+        <img src={assets.logo} alt="logo" className="logo" />
         <ul className="nav-links">
             <li onClick={() => setLinking('Home')} className={linking === 'Home' ? 'active' : ''} >Home</li>
             <li onClick={() => setLinking('About')} className={linking === 'About' ? 'active' : ''} >About</li>

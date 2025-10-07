@@ -19,9 +19,9 @@ import FoodItem from '../FoddItem/FoodItem';
       <div className='foodDisplay' id='foodDisplay'>
         <h2>Our Popular Dishes</h2>   
         <div className='foodDisplayList'>
-          {visibleFoods.map((item,index) => {
+          {visibleFoods.map((item) => {
             return (
-              <FoodItem key={index} name={item.name} id={item._id} image={item.image} description={item.description} price={item.price} />
+              <FoodItem key={item._id} name={item.name} id={item._id} image={item.image} description={item.description} price={item.price} />
             );
           })}
         </div>

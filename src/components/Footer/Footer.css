@@ -1,0 +1,138 @@
+.footer {
+    background-color: #f8f8f8;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footercontent {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footercontent-left,
+.footercontent-center,
+.footercontent-right,
+.footercontent-social {
+    flex: 1;
+    padding: 10px;
+}
+
+.footercontent-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center logo and text horizontally */
+    justify-content: center; /* center vertically within the column */
+    gap: 8px;
+}
+
+.footercontent-left img {
+    max-width: 90px;
+    margin-bottom: 0;
+}
+
+.footercontent-social a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+.footercontent-social img {
+     width: 28px;
+     height: 28px;
+     object-fit: contain;
+     margin: 0 6px;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}   
+@media (max-width: 768px) {
+    .footercontent {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footercontent-left,
+    .footercontent-center,
+    .footercontent-right,
+    .footercontent-social {
+        padding: 10px 0;
+    }
+}
+    .footercontent-social img {
+        margin: 0 10px;
+    }
+    .footercontent-social img {
+        margin: 0 10px;
+    }
+    .footercontent-social img {
+        width: 32px;
+        height: 32px;
+    }
+    .footercontent-social a {
+        margin: 0 10px;
+    }
+    .footercontent-left img {
+        max-width: 90px;
+    }
+
+/* Specific class for the company logo so we can control it precisely */
+.footercontent-left img.footer-logo {
+    display: block;
+    max-width: 90px;
+    width: auto;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .footercontent-left img.footer-logo {
+        max-width: 70px;
+        margin: 0 auto 8px;
+    }
+}
+
+.footercontent-social a:hover {
+    border-color: rgba(0,0,0,0.1);
+    background: rgba(255,255,255,0.9);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Disable hover effect for the company logo */
+.footercontent-left img.footer-logo:hover {
+    background: none;
+    transform: none;
+    cursor: default;
+}
+
+    .footercontent-social img {
+        margin: 0 10px;
+    }
+    .footercontent-social img {
+        margin: 0 10px;
+    }
+    .footercontent-social img {
+        width: 32px;
+        height: 32px;
+    }
+    .footercontent-social a {
+        margin: 0 10px;
+    }
+    .footercontent-left img {
+        max-width: 90px;
+    }
+
+
+
+

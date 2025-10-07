@@ -1,41 +1,98 @@
 .navbar{
-    padding: 20px 0px;
+    padding: 16px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
-.navbar .logo{
-    width: 150px;
-    
+.logo{
+    width: 160px;
+    height: auto;
+    object-fit: contain;
 }
 
 .nav-links{
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
     font-size: 18px;
+    flex: 1; /* let links take the middle space */
+    justify-content: center; /* center links between logo and actions */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li{
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background-color 0.15s ease;
+}
+
+.nav-links li:hover{
+    background-color: rgba(0,0,0,0.05);
+}
+
+@media (max-width: 1024px){
+    .logo{width:140px}
+}
+
+@media (max-width: 768px){
+    .logo{width:120px}
+    .nav-links{display:none}
 }
 
 /* right side of navbar get center*/
 .navbar-right{
     display: flex;
     align-items: center;
-    gap: 40px;  
-}   
+    gap: 16px;
+    margin-left: auto; /* keep right group to the far right */
+}
 
-.navbar button{
-    padding: 10px 20px;
+.login-button{
+    padding: 8px 14px;
     border: none;
     background-color: #ff5722;
     color: white;
-    font-size: 16px;
-    border-radius: 5px;
+    font-size: 15px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background-color 0.2s ease;
 }
-.navbar button:hover{
+.login-button:hover{
     background-color: #e64a19;
+}
+
+/* small icon helpers */
+.icon{
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    display: inline-block;
+}
+
+.navbar-search{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.navbar-search .dot{
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 10px;
+    height: 10px;
+    background-color: #ff5722;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(255,87,34,0.12);
 }
 
 /* active link styling */
