@@ -8,42 +8,113 @@
 .exploreMenu h2 {
   font-size: 24px;
   margin-bottom: 10px;
-  font-weight: 500;
+
 }   
 
 .exploreMenuDescription {
-  font-size: 14px;
+  font-size: 17px;
   color: #555;
-  margin-bottom: 20px;
-  max-width: 60%;
+  margin-top: -10px;  
 }     
 
-.exploreMenuList {
+.exploreMenulist {
   display: flex;
-  gap: 30px;
-  justify-content: space-between;
+  flex-direction: row; /* horizontal layout */
+  flex-wrap: nowrap; /* prevent items from wrapping to next line */
+  gap: 20px; /* slightly more comfortable spacing */
+  justify-content: flex-start; /* left align so items form a row */
   align-items: center;
-  margin: 20px 0px;margin: 20px 0px;
-  overflow-x: scroll;
+  text-align: center;
+  margin: 20px 0px;
+  overflow-x: auto; /* allow horizontal scroll when items overflow */
+  padding-bottom: 8px; /* give space so last row isn't clipped when scrollbar hidden */
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+  touch-action: auto; /* allow native horizontal scrolling on touch/trackpad */
+  user-select: none; /* prevent accidental text selection */
+  scroll-snap-type: x start; /* optional snap to items */
+  scroll-behavior: smooth; /* smooth programmatic/native scrolling */
+  scrollbar-gutter: stable both-edges; /* avoid layout shift when scrollbar appears */
+  position: relative; /* for the fade overlays */
+  padding-right: 40px; /* ensure last item isn't visually cut off */
+  scrollbar-width: none; /* hide scrollbar in Firefox */
+  -ms-overflow-style: none; /* hide scrollbar in IE 10+ */
 }
 
-.exploreMenuList::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
-} 
+/* hide scrollbar in WebKit-based browsers without disabling scroll */
+.exploreMenulist::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+
+/* subtle left/right fade overlays to indicate overflow without showing scrollbars */
+/* fades removed to avoid cutting items; right padding added instead */
+
+    
+
+.exploremenuItems {
+  flex: 0 0 auto; /* don't shrink; stay inline for horizontal row */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 10px; /* comfortable padding so ring has room */
+  scroll-snap-align: center; /* snap each item to center when scrolling */
+}
+
+/* Controls wrapper that contains the list and arrows */
+.exploreMenuControls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.scrollBtn {
+  background: #fff;
+  border: 1px solid #eee;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-grid;
+  place-items: center;
+  font-size: 20px;
+}
+
+/* subtle hover/active effects for buttons */
+.scrollBtn:active { transform: scale(0.98) }
+
+.scrollBtn.left { margin-right: 4px }
+.scrollBtn.right { margin-left: 4px }
 
 .exploremenuItems img {
-  width: 7.5vw;
-  min-width: 80px;
+  /* larger responsive bounds for clearer menu items */
+  width: clamp(56px, 8vw, 104px);
+  height: clamp(56px, 8vw, 104px);
   cursor: pointer;
   border-radius: 50%;
-  transition: 0.3s;
+  transition: 0.18s ease;
+  display: block;
+  object-fit: cover;
+  border: none;
+}
 
+/* prevent browser's default image-drag that can interfere with horizontal scroll */
+.exploremenuItems img,
+.exploremenuItems p {
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 .exploremenuItems p {
   font-size: 14px;
-  margin-top: 5px;
-  font-weight: 500;
+  margin-top: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 120px; /* allow slightly longer labels */
 }
 
 .exploreMenu hr {
@@ -53,12 +124,65 @@
   margin: 20px 0px;
 }
 
-.exploremenuItems .active {
-  border: 2px solid #ff6f61;
-  padding: 5px;
+.exploremenuItems img.active,
+.exploremenuItems.active img {
+  box-sizing: border-box;
+  border-radius: 50%;
+  /* larger ring for increased image size */
+  box-shadow: 0 0 0 8px rgba(255,111,97,0.18), 0 0 0 4px #ff6f61;
+  outline: 2px solid rgba(255,111,97,0.95);
+  border: 3px solid #ff6f61; /* fallback */
+  padding: 3px;
+  transform: translateZ(0);
+  transition: box-shadow 160ms ease, transform 160ms ease;
 }
 
+/* make the list keyboard-focus friendly */
+.exploreMenulist:focus {
+  outline: none;
+}
+
+.exploremenuItems img:focus {
+  outline: 2px solid #ff6f61;
+  outline-offset: 2px;
+}
+.exploremenuItems img:hover {
+  transform: scale(1.06);
+  transition: 0.18s ease;
+}
+.exploremenuItems img:focus {
+  outline: 2px solid #ff6f61;
+  outline-offset: 2px;
+}
+.exploremenuItems p:hover {
+  color: #ff6f61;
+  transition: 0.18s ease;
+}
+@media (max-width: 600px) {
+  .exploreMenu h2 {
+    font-size: 20px;
+  }
+  .exploreMenuDescription {
+    font-size: 14px;
+  }
+  .exploremenuItems p {
+    font-size: 12px;
+    max-width: 100px;
+  }
+}
+/* Responsive adjustments for smaller screens */
+@media (max-width: 400px) { 
+  .exploremenuItems img {
+    width: clamp(48px, 12vw, 80px);
+    height: clamp(48px, 12vw, 80px);
+  }
+} 
+@media (max-width: 350px) { 
+  .exploremenuItems img {
+    width: clamp(40px, 14vw, 64px);
+    height: clamp(40px, 14vw, 64px);
+  }
+}
+/* end of ExploreMenu.css */  
 
     
-    
-
