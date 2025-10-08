@@ -6,12 +6,21 @@ import Cart from './pages/Cart/Cart'
 import { PlaceOrder } from './pages/PlaceOrder/PlaceOrder'
 import './App.css'
 import Footer from './components/Footer/Footer'
+import Login from './components/Login/Login'
 
 export const App = () => {
+
+  const [showlogin, setShowLogin] = React.useState(false);
+
   return (
     <>
+
+    {showlogin?<Login setShowLogin={setShowLogin} />:null}
+
    <div className='app'>
-    <Navbar />
+
+    <Navbar setShowLogin={setShowLogin} />
+
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/cart' element={<Cart />} />

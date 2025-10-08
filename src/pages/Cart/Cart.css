@@ -1,0 +1,109 @@
+.cart {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  /* space between cart content and the site footer */
+  margin-bottom: 60px;
+}
+
+.cartContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-bottom: 8px;
+}
+
+.cartList {
+  margin-top: 20px;
+}
+
+.cartRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cartHeader {
+  font-weight: bold;
+}
+
+.cartTitle {
+  display: flex;
+  align-items: center;
+}
+
+/* column widths for header and rows - explicit and consistent */
+.cartRow > .cartTitle { flex: 0 0 40%; display: flex; align-items: center; }
+.cartRow > div { flex: 0 0 15%; text-align: center; }
+
+/* header row: make its first column (Title) match item rows */
+.cartRow.cartHeader > div:first-child { flex: 0 0 40%; text-align: left; }
+.cartRow.cartHeader > div:not(:first-child) { flex: 0 0 15%; text-align: center; }
+
+/* actions column: center buttons and add spacing */
+.cartRow > div:last-child { display: flex; justify-content: center; gap: 8px; }
+.cartRow > div:last-child button {
+  min-width: 36px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
+.cartRow > div:last-child button:hover { background: #f3f3f3; }
+
+.cartTitle img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.cartFooter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.checkoutButton {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.checkoutButton:hover {
+  background-color: #218838;
+}
+.emptyCart {
+  text-align: center;
+  padding: 50px 0;
+  color: #777;
+}
+.emptyCart img {
+  width: 150px;
+  height: auto;
+  margin-bottom: 20px;
+}
+.emptyCart p {
+  font-size: 18px;
+}
+@media (max-width: 600px) {
+  .cartRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cartFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  /* keep a bit more bottom spacing on small screens so footer doesn't sit too close */
+  .cart { margin-bottom: 80px; }
+}
+   

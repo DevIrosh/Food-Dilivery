@@ -4,7 +4,7 @@ import './AppDownload.css'
 
 export const AppDownload = () => {
   return (
-    <div className="app-download">
+    <div className="app-download" id='appDownload'>
       <h2>Download Our App</h2>
       <p>Get the best food delivery experience at your fingertips.</p>
       <div className="app-download-buttons">
