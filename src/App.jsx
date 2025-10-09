@@ -7,6 +7,7 @@ import { PlaceOrder } from './pages/PlaceOrder/PlaceOrder'
 import './App.css'
 import Footer from './components/Footer/Footer'
 import Login from './components/Login/Login'
+import CardPayments from './components/CardPayments/CardPayments'
 
 export const App = () => {
 
@@ -25,6 +26,7 @@ export const App = () => {
       <Route path='/' element={<Home />} />
       <Route path='/cart' element={<Cart />} />
       <Route path='/order' element={<PlaceOrder />} />
+      <Route path='/payment' element={<CardPayments />} />
     </Routes>
     </div>
     <Footer />

@@ -1,0 +1,208 @@
+.cardPayments {
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 40px;
+}
+
+.paymentContainer {
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 40px;
+}
+
+.paymentContainer h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.orderSummary {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-left: 4px solid #28a745;
+}
+
+.orderSummary h3 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 18px;
+}
+
+.orderSummary p {
+  margin: 8px 0;
+  color: #666;
+}
+
+.subtotalRow {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid #e9ecef;
+}
+
+.subtotalRow p {
+  color: #28a745;
+  font-size: 18px;
+  margin: 0;
+}
+
+.cardForm h3 {
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 20px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.formGroup input,
+.formGroup select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+  outline: none;
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+.formGroup input.error,
+.formGroup select.error {
+  border-color: #dc3545;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+}
+
+.errorText {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+}
+
+.completeTransactionBtn {
+  width: 100%;
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.completeTransactionBtn:hover {
+  background: linear-gradient(135deg, #218838, #1ea085);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+}
+
+.completeTransactionBtn:active {
+  transform: translateY(0);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .cardPayments {
+    padding: 15px;
+    padding-top: 20px;
+  }
+  
+  .paymentContainer {
+    padding: 20px;
+  }
+  
+  .paymentContainer h2 {
+    font-size: 24px;
+  }
+  
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .formGroup input,
+  .formGroup select {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+@media (max-width: 480px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+  
+  .paymentContainer {
+    padding: 15px;
+  }
+  
+  .completeTransactionBtn {
+    padding: 14px 20px;
+    font-size: 16px;
+  }
+}
+
+/* Animation for form validation */
+.formGroup {
+  position: relative;
+}
+
+.formGroup input:invalid:not(:focus):not(:placeholder-shown) {
+  border-color: #dc3545;
+}
+
+/* Security indicator for CVC */
+.formGroup input[name="cvcCode"]::placeholder {
+  color: #999;
+}
+
+/* Card number formatting visual feedback */
+.formGroup input[name="cardNumber"] {
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+
+/* Smooth transition for input focus */
+.formGroup input,
+.formGroup select {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}

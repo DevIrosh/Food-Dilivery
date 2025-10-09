@@ -1,13 +1,15 @@
-import React from 'react'           
+import React, { useState, useContext } from 'react'
 import './Navbar.css'
-import {assets}
-    from '../../assets/assets'
-import { useState } from 'react'
+import { assets } from '../../assets/assets'
 import { Link } from 'react-router-dom'
+import { StoreContext } from '../../context/StoreContextValue'
 
 export const Navbar = ({ setShowLogin }) => {
 
     const [linking, setLinking] = useState('Home');
+    // get cart from value
+    const { cart = {} } = useContext(StoreContext) || {}
+    const totalItems = Object.values(cart).reduce((sum, v) => sum + (Number(v) || 0), 0)
 
   return (
     <div className="navbar">
@@ -23,7 +25,7 @@ export const Navbar = ({ setShowLogin }) => {
             <Link to='/search'><img src={assets.search_icon} alt="" /></Link>
             <div className="navbar-search">
                 <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link>
-                <div className="dot"></div>
+                <div className={totalItems > 0 ? 'dot' : ''}>{totalItems > 0 ? totalItems : ''}</div>
                 
             </div>
         </div>      

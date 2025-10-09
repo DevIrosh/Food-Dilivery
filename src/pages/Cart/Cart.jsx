@@ -2,9 +2,13 @@
 import React from 'react'
 import './Cart.css'
 import { StoreContext } from '../../context/StoreContextValue'
+import { useNavigate } from 'react-router-dom'
 
 export default function Cart() {
   const { cart = {}, food_list = [], addItem, removeItem } = React.useContext(StoreContext)
+
+  // Get navigation function to route to order page on checkout
+  const navigate = useNavigate()
 
   // Fallback if _id not present try id or index-based behavior
   const resolvedItems = (food_list || []).filter(item => {
@@ -20,6 +24,15 @@ export default function Cart() {
     const price = Number(item.price) || 0
     return sum + price * qty
   }, 0)
+
+  const handleCheckout = () => {
+    if (subtotal <= 0) {
+      alert('Your cart is empty.')
+      return
+    }
+    // navigate to order/checkout page and pass subtotal in location state
+    navigate('/order', { state: { subtotal } })
+  }
 
   return (
     <div className='cart'>
@@ -64,8 +77,13 @@ export default function Cart() {
             })}
 
             <div className='cartFooter'>
-              <strong>Subtotal:</strong>
-              <span>${subtotal.toFixed(2)}</span>
+              <div className='subtotalRow'>
+                <strong>Subtotal:</strong>
+                <span>${subtotal.toFixed(2)}</span>
+              </div>
+              <div className='checkoutRow'>
+                <button onClick={handleCheckout} className='checkoutButton'>Checkout</button>
+              </div>
             </div>
           </div>
         )}

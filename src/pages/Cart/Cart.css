@@ -64,7 +64,9 @@
 
 .cartFooter {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
   margin-top: 20px;
   font-weight: bold;
 }
@@ -105,5 +107,25 @@
   }
   /* keep a bit more bottom spacing on small screens so footer doesn't sit too close */
   .cart { margin-bottom: 80px; }
+}
+
+/* layout for subtotal + checkout button */
+.subtotalRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.checkoutRow {
+  display: flex;
+  align-items: center;
+}
+
+/* place the button below the subtotal on narrow screens */
+@media (min-width: 601px) {
+  .cartFooter { flex-direction: row; }
+}
+@media (max-width: 600px) {
+  .cartFooter { width: 100%; }
+  .checkoutButton { width: 100%; }
 }
    

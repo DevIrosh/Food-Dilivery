@@ -1,0 +1,208 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.placeOrderTitle {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.orderDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.orderItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.orderItem:last-child {
+  border-bottom: none;
+}
+
+.orderItem img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 12px;
+}
+.orderItemDetails {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.orderItemName {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.orderItemPrice {
+  font-size: 16px;
+  font-weight: bold;
+  color: #28a745;
+}
+
+.orderSummary {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.orderSummary h3 {
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.orderSummaryRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.orderSummaryRow.total {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.placeOrderButton {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.placeOrderButton:hover {
+  background-color: #218838;
+}
+
+/* Styles for the place order form we added */
+.placeOrderForm {
+  max-width: 720px;
+  margin: 24px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+  box-sizing: border-box;
+}
+.placeOrderForm h2 {
+  text-align: center;
+  margin-bottom: 18px;
+}
+.placeOrderForm label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.placeOrderForm label input,
+.placeOrderForm label select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 8px;
+  border: 1px solid #e3e3e3;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.placeOrderForm button[type="submit"] {
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  background: #28a745;
+  color: #fff;
+  cursor: pointer;
+}
+.placeOrderForm button[type="submit"]:hover { background:#218838 }
+
+/* place first name and last name side-by-side on wider screens */
+@media (min-width: 700px) {
+  .placeOrderForm label:nth-of-type(1),
+  .placeOrderForm label:nth-of-type(2) {
+    display: inline-block;
+    width: calc(50% - 10px);
+    vertical-align: top;
+    margin-right: 12px;
+  }
+  /* remove margin-right on the second (last name) so both fit */
+  .placeOrderForm label:nth-of-type(2) { margin-right: 0 }
+}
+
+@media (max-width: 699px) {
+  .placeOrderForm { padding: 16px }
+  .placeOrderForm label { margin-bottom: 10px }
+}
+
+/* Payment option cards */
+.paymentOptions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.paymentOption {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  background: transparent;
+}
+.paymentOption img {
+  width: 28px;
+  height: 18px;
+  object-fit: contain;
+  display: inline-block;
+}
+.paymentOption input { margin-right: 6px }
+.paymentOption.selected {
+  border-color: #28a745;
+  background: rgba(40,167,69,0.06);
+}
+
+@media (max-width: 420px) {
+  .paymentOption img { width: 24px; height: 16px }
+  .paymentOptions { gap: 8px }
+}
+
+@media (max-width: 600px) {
+  .orderDetails {
+    gap: 15px;
+  }
+  .orderItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .orderItemDetails {
+    gap: 8px;
+  }
+  .orderSummary {
+    padding: 15px;
+  }
+  .placeOrderButton {
+    font-size: 16px;
+    padding: 10px;
+  }
+}
+  
