@@ -2,7 +2,7 @@
     /* Use viewport height for more consistent header size and cover background */
     height: min(60vh, 520px);
     margin: 30px auto;
-    background: url('/header_img.png') no-repeat center/cover;
+    background: url('/header_img.png') no-repeat center/cover; /* Background image */
     position: relative;
 }
 
