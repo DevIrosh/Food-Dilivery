@@ -1,6 +1,7 @@
 import Food from "../models/foodmodels.js";
 import fs from 'fs';
 
+
 // Controller to add a new food item
 export const addFoodItem = async (req, res) => {
     try {
@@ -61,7 +62,7 @@ export const addFoodItem = async (req, res) => {
     }
 }
 // Controller to list all food items
-const listFoodItems = async (req, res) => {
+export const listFoodItems = async (req, res) => {
     try {
         const foods = await Food.find({});
         res.json({ success: true, data: foods });
@@ -69,10 +70,54 @@ const listFoodItems = async (req, res) => {
         console.log('Error fetching foods:', error);
         res.status(500).json({ success: false, message: error.message });
     }
-
 }
 
-export default { addFoodItem, listFoodItems };
+// Controller to remove a food item
+export const removeFoodItem = async (req, res) => {
+    try {
+        const { id } = req.body;
+        
+        if (!id) {
+            return res.status(400).json({ 
+                success: false, 
+                message: "Food item ID is required" 
+            });
+        }
+
+        const food = await Food.findById(id);
+        if (!food) {
+            return res.status(404).json({ 
+                success: false, 
+                message: "Food item not found" 
+            });
+        }
+
+        // Remove image file if it exists
+        if (food.image) {
+            try {
+                fs.unlinkSync(food.image);
+            } catch (err) {
+                console.log('Warning: Could not delete image file:', err.message);
+            }
+        }
+
+        await Food.findByIdAndDelete(id);
+        
+        res.json({ 
+            success: true, 
+            message: "Food item removed successfully" 
+        });
+        
+    } catch (error) {
+        console.log('Error removing food item:', error);
+        res.status(500).json({ 
+            success: false, 
+            message: error.message 
+        });
+    }
+}
+
+
 
 
 

@@ -1,5 +1,5 @@
 import express from 'express';
-import { addFoodItem } from '../controllers/foodcontroller.js';
+import { addFoodItem, listFoodItems, removeFoodItem } from '../controllers/foodcontroller.js';
 import multer from 'multer';//for image upload handling
 
 const foodroute = express.Router(); 
@@ -61,15 +61,9 @@ foodroute.post('/add', (req, res, next) => {
 }, addFoodItem);
 
 // GET route to list all food items
-foodroute.get('/list', async (req, res) => {
-    try {
-        const { default: Food } = await import('../models/foodmodels.js');
-        const foods = await Food.find({});
-        res.json({ success: true, data: foods });
-    } catch (error) {
-        console.log('Error fetching foods:', error);
-        res.status(500).json({ success: false, message: error.message });
-    }
-});
+foodroute.get('/list', listFoodItems);
+
+// POST route to remove a food item (expects ID in request body)
+foodroute.post('/remove', removeFoodItem);
 
 export default foodroute;
