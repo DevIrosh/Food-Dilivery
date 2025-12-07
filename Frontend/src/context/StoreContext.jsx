@@ -1,11 +1,15 @@
-import React, { useState } from 'react'
-import { food_list } from '../assets/assets'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { StoreContext } from './StoreContextValue'
 
 
 const StoreContextProvider = (props) => {
     // cart is a map of itemId -> quantity
     const [cart, setCart] = useState({})
+      // backend URL
+    const url="http://localhost:40000";
+    const [token, setToken] = useState("");   
+    const [food_list, setFoodList] = useState([])
 
     const setItemCount = (id, count) => {
         setCart(prev => {
@@ -35,12 +39,42 @@ const StoreContextProvider = (props) => {
         })
     }
 
+
+
+
+    
+
+
+
+    // Fetch food list from backend
+    const fetchFoodList = async () => {
+        try {
+            const response = await axios.get(`${url}/api/food/list`);
+            setFoodList(response.data.data);
+        } catch (error) {
+            console.error('Error fetching food list:', error);
+        }
+    }
+
+    // Load token from localStorage on mount solve the logout while refreshing
+    useEffect(() => {
+        const storedToken = localStorage.getItem('token')   
+        if (storedToken) {
+            setToken(storedToken);
+        }
+        fetchFoodList();
+    }, []);
+
+
     const contextValue = {
         food_list,
         cart,
         setItemCount,
         addItem,
         removeItem,
+        url,
+        token,
+        setToken
     }
 
     return (

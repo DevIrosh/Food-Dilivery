@@ -7,6 +7,16 @@ import { StoreContext } from '../../context/StoreContextValue'
 export const Navbar = ({ setShowLogin }) => {
 
     const [linking, setLinking] = useState('Home');
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const {token, setToken}=useContext(StoreContext);
+    // logout function
+    const logout = () => {
+        localStorage.removeItem('token');
+        setToken('');
+        setShowDropdown(false);
+    }
+
     // get cart from value
     const { cart = {} } = useContext(StoreContext) || {}
     const totalItems = Object.values(cart).reduce((sum, v) => sum + (Number(v) || 0), 0)
@@ -26,11 +36,35 @@ export const Navbar = ({ setShowLogin }) => {
             <div className="navbar-search">
                 <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link>
                 <div className={totalItems > 0 ? 'dot' : ''}>{totalItems > 0 ? totalItems : ''}</div>
-                
             </div>
-        </div>      
-        {/*set show login */}
-        <button onClick={() => setShowLogin(true)} className="login-button">Login</button> 
+            
+            {/*show profile icon when logged in, sign in button when not logged in */}
+            {!token ? (
+                <button onClick={() => setShowLogin(true)} className="login-button">sign in</button>
+            ) : (
+                <div className='navbar-profile'>
+                    <img 
+                        src={assets.profile_icon} 
+                        alt="Profile" 
+                        onClick={() => setShowDropdown(!showDropdown)}
+                    />
+                    {showDropdown && (
+                        <ul className="nav-profile-dropdown">
+                            <li onClick={() => setShowDropdown(false)}>
+                                <img src={assets.bag_icon} alt="" />
+                                <p>Orders</p>
+                            </li>
+                            <hr />
+                            <li onClick={logout}>
+                                <img src={assets.logout_icon} alt="" />
+                                <p>Logout</p>
+                            </li>
+                        </ul>
+                    )}
+                </div>
+            )}
+        </div>
+        
 
     </div>
   )

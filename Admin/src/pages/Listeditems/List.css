@@ -1,0 +1,129 @@
+.list {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.list-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.items-container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.items-header {
+  display: grid;
+  grid-template-columns: 80px 1fr 2fr 1fr 100px 60px;
+  gap: 15px;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: bold;
+  align-items: center;
+}
+
+.item-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 2fr 1fr 100px 60px;
+  gap: 15px;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.item-row:hover {
+  background-color: #f8f9fa;
+}
+
+.item-row:last-child {
+  border-bottom: none;
+}
+
+.item-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  background-color: #f5f5f5;
+}
+
+.item-row p {
+  margin: 0;
+  color: #333;
+  font-size: 14px;
+}
+
+.item-row p:nth-child(2) {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.item-row p:nth-child(5) {
+  font-weight: bold;
+  color: #27ae60;
+  font-size: 16px;
+}
+
+.delete-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+  transform: scale(1.1);
+}
+
+.no-items {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 18px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .items-header,
+  .item-row {
+    grid-template-columns: 60px 1fr 80px;
+    gap: 10px;
+  }
+  
+  .items-header b:nth-child(3),
+  .items-header b:nth-child(4),
+  .item-row p:nth-child(3),
+  .item-row p:nth-child(4) {
+    display: none;
+  }
+  
+  .item-image {
+    width: 50px;
+    height: 50px;
+  }
+}

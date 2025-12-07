@@ -4,6 +4,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
 import foodroute from './routes/foodroute.js';
+import userroute from './routes/userroute.js';
+import cartroute from './routes/cartroute.js';
+import 'dotenv/config';
 
 
 // Load environment variables
@@ -19,6 +22,13 @@ app.use(express.json());
 app.use((req, res, next) => {
     console.log(`📥 ${req.method} ${req.url} - Content-Type: ${req.headers['content-type']}`);
     console.log('Request Body:', req.body);
+    console.log('Request Headers:', req.headers);
+    
+    // Special logging for cart routes
+    if (req.url.includes('/api/cart')) {
+        console.log('🛒 CART REQUEST DETECTED:', req.method, req.url);
+    }
+    
     next();
 });
 
@@ -29,6 +39,15 @@ connectDB();
 //api endpoints
 app.use('/api/food', foodroute);
 app.use("/images", express.static("uploads"));
+//user route api
+console.log('🔗 Setting up user routes...');
+app.use('/api/user', userroute);
+console.log('✅ User routes configured');
+
+console.log('🔗 Setting up cart routes...');
+app.use('/api/cart', cartroute);
+console.log('✅ Cart routes configured');
+
 
 app.get("/",(req, res) => res.send("Welcome to the Food Delivery API it's running"));// MongoDB connection 
 

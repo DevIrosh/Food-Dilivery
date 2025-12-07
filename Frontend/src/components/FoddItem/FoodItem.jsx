@@ -5,13 +5,24 @@ import { StoreContext } from '../../context/StoreContextValue'
 
 
 const FoodItem = ({ name, description, price, image, id }) => {
-  const { cart, addItem, removeItem } = useContext(StoreContext)
+  const { cart, addItem, removeItem, url } = useContext(StoreContext)
   const itemCount = cart[id] || 0
+  
+  // Construct proper image URL - remove uploads\ prefix if present
+  const cleanImageName = image ? image.replace(/^uploads[\\]/, '').replace(/^uploads\//, '') : ''
+  const imageUrl = cleanImageName ? `${url}/images/${cleanImageName}` : assets.logo
 
   return (
     <div className='foodItem'>
       <div className='foodItemImage'>
-         <img className='foodItemPic' src={image || assets.logo} alt={name || ''} />
+         <img 
+           className='foodItemPic' 
+           src={imageUrl} 
+           alt={name || 'Food item'} 
+           onError={(e) => {
+             e.target.src = assets.logo;
+           }}
+         />
          {!itemCount ? (
            <button
              className='foodItemAddBtn'

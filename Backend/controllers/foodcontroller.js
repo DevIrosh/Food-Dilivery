@@ -26,7 +26,7 @@ export const addFoodItem = async (req, res) => {
         // Handle image path
         let image_path = "";
         if (req.file) {
-            image_path = req.file.path;
+            image_path = req.file.filename; // Store only filename, not full path
             console.log('Image Path:', image_path);
         } else {
             console.log('No image file provided');

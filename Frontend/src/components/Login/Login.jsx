@@ -1,49 +1,89 @@
 import React from 'react'
 import './Login.css'
 import { assets } from '../../assets/assets'
+import { StoreContext } from '../../context/StoreContextValue'  
+import axios from 'axios';
 
 // currentState can be 'Login' or 'Signup'
 export const Login = ({ setShowLogin }) => {
+
+const{url,setToken}=React.useContext(StoreContext);  
+
+  // State to track current view (Login/Signup)
   const [currentState, setCurrentState] = React.useState('Login') // default to Login view
-  const [name, setName] = React.useState('')
-  const [phone, setPhone] = React.useState('')
-  const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
+  const [data,setData]=React.useState({
+    name:"",
+    phone:"",
+    email:"",
+    password:""
+  })
+// Input onchange handler
+  const onChangeHandler=(e)=>{
+    const name=e.target.name;
+    const value=e.target.value;
+    setData((prevData)=>({  ...prevData, [name]: value }));
+  } 
+
   const [message, setMessage] = React.useState(null)
-  const [acceptedTos, setAcceptedTos] = React.useState(false) // set acceptedTos to false initially
-  const onSubmit = (e) => {
+  const [acceptedTos, setAcceptedTos] = React.useState(false)
+
+  const onlogin = async (e) => {
     e.preventDefault()
     setMessage(null)
 
-    if (currentState === 'Signup') {
-      if (!name.trim() || !phone.trim() || !email.trim() || !password) {
-        setMessage({ type: 'error', text: 'Please fill all required fields (name, phone, email, password).' })
-        return
+    try {
+      // Validation
+      if (currentState === 'Signup') {
+        if (!data.name.trim() || !data.email.trim() || !data.password) {
+          setMessage({ type: 'error', text: 'Please fill all required fields.' })
+          return
+        }
+        if (!acceptedTos) {
+          setMessage({ type: 'error', text: 'Please accept Terms of Service.' })
+          return
+        }
+      } else {
+        if (!data.email.trim() || !data.password) {
+          setMessage({ type: 'error', text: 'Please enter email and password.' })
+          return
+        }
       }
-      if (!acceptedTos) {
-        setMessage({ type: 'error', text: 'Please accept the Terms of Service and Privacy Policy to continue.' })
-        return
-      }
-      // For now just show success; integration with backend/auth can be added later
-      setMessage({ type: 'success', text: 'Account details collected. (Demo only)' })
-      console.log('Signup payload:', { name, phone, email, password })
-      if (setShowLogin) setTimeout(() => setShowLogin(false), 700)
-      return
-    }
 
-    // Login mode
-    if (!email.trim() || !password) {
-      setMessage({ type: 'error', text: 'Please enter email and password.' })
-      return
+      // Determine API endpoint
+      let newUrl = url
+      if (currentState === 'Login') {
+        newUrl = `${url}/api/user/login`
+      } else {
+        newUrl = `${url}/api/user/register`
+      }
+
+      // Make API call
+      const response = await axios.post(newUrl, data)
+
+      // Handle response
+      if (response.data.success) {
+        if (setToken) {
+          setToken(response.data.token)
+        }
+        localStorage.setItem('token', response.data.token)
+        setMessage({ type: 'success', text: response.data.message })
+        setTimeout(() => setShowLogin(false), 1000)
+      } else {
+        setMessage({ type: 'error', text: response.data.message })
+      }
+    } catch (error) {
+      console.error('Authentication error:', error)
+      if (error.response) {
+        setMessage({ type: 'error', text: error.response.data.message || 'Server error' })
+      } else {
+        setMessage({ type: 'error', text: 'Network error. Please try again.' })
+      }
     }
-    setMessage({ type: 'success', text: 'Login submitted. (Demo only)' })
-    console.log('Login payload:', { email, password })
-    if (setShowLogin) setTimeout(() => setShowLogin(false), 500)
   }
 
   return (
     <div className='login'>
-      <form className='login-form' onSubmit={onSubmit}>
+      <form className='login-form' onSubmit={onlogin}>
         <div className='login-form-header'>
           <h2>{currentState === 'Signup' ? 'Create account' : 'Log in'}</h2>
           <img onClick={() => setShowLogin && setShowLogin(false)} src={assets.cross_icon} alt='Close' className='close-icon' />
@@ -52,13 +92,41 @@ export const Login = ({ setShowLogin }) => {
         <div className='login-form-inputs'>
           {currentState === 'Signup' && (
             <>
-              <input value={name} onChange={(e) => setName(e.target.value)} type='text' placeholder='Enter your name' required />
-              <input value={phone} onChange={(e) => setPhone(e.target.value)} type='tel' placeholder='Enter your phone number' required />
+              <input 
+                name='name' 
+                value={data.name} 
+                onChange={onChangeHandler} 
+                type='text' 
+                placeholder='Enter your name' 
+                required 
+              />
+              <input 
+                name='phone' 
+                value={data.phone} 
+                onChange={onChangeHandler} 
+                type='tel' 
+                placeholder='Enter your phone number' 
+                required 
+              />
             </>
           )}
 
-          <input value={email} onChange={(e) => setEmail(e.target.value)} type='email' placeholder='Enter your email' required />
-          <input value={password} onChange={(e) => setPassword(e.target.value)} type='password' placeholder='Enter your password' required />
+          <input 
+            name='email' 
+            value={data.email} 
+            onChange={onChangeHandler} 
+            type='email' 
+            placeholder='Enter your email' 
+            required 
+          />
+          <input 
+            name='password' 
+            value={data.password} 
+            onChange={onChangeHandler} 
+            type='password' 
+            placeholder='Enter your password' 
+            required 
+          />
         </div>
 
         {message && <div className={`login-message ${message.type}`}>{message.text}</div>}

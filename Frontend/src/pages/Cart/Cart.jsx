@@ -5,7 +5,7 @@ import { StoreContext } from '../../context/StoreContextValue'
 import { useNavigate } from 'react-router-dom'
 
 export default function Cart() {
-  const { cart = {}, food_list = [], addItem, removeItem } = React.useContext(StoreContext)
+  const { cart = {}, food_list = [], addItem, removeItem, url } = React.useContext(StoreContext)
 
   // Get navigation function to route to order page on checkout
   const navigate = useNavigate()
@@ -58,7 +58,12 @@ export default function Cart() {
               return (
                 <div className='cartRow' key={id}>
                   <div className='cartTitle'>
-                    {item.image ? <img src={item.image} alt={item.name} /> : null}
+                    {item.image ? (
+                      <img 
+                        src={`${url}/images/${item.image.replace(/^uploads[\\]/, '').replace(/^uploads\//, '')}`} 
+                        alt={item.name} 
+                      />
+                    ) : null}
                     <span>{item.name}</span>
                   </div>
                   <div>${price.toFixed(2)}</div>
