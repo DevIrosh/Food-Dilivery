@@ -64,11 +64,11 @@ try {
             if (res.ok) {
               console.log('✅ Image accessible:', imageUrl);
             } else {
-              console.log('❌ Image not accessible:', imageUrl, 'Status:', res.status);
+              console.log('Image not accessible:', imageUrl, 'Status:', res.status);
             }
           })
           .catch(err => {
-            console.log('❌ Image fetch error:', imageUrl, err.message);
+            console.log('Image fetch error:', imageUrl, err.message);
           });
       }
     });

@@ -1,0 +1,121 @@
+.orders {
+  padding: 20px;
+}
+
+.orders h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.order-item p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.order-item strong {
+  color: #333;
+}
+
+.status-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.status-container label {
+  font-weight: bold;
+  color: #333;
+}
+
+.status-dropdown {
+  padding: 8px 12px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.status-dropdown:hover {
+  border-color: #007bff;
+}
+
+.status-dropdown:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.status-dropdown option {
+  padding: 8px;
+}
+
+.order-item ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.order-item li {
+  margin: 5px 0;
+  font-size: 13px;
+  color: #555;
+}
+
+/* Status-specific styling */
+.status-dropdown.status-processing {
+  background-color: #fff3cd;
+  border-color: #ffc107;
+}
+
+.status-dropdown.status-out-for-delivery {
+  background-color: #d1ecf1;
+  border-color: #17a2b8;
+}
+
+.status-dropdown.status-delivered {
+  background-color: #d4edda;
+  border-color: #28a745;
+}
+
+.status-dropdown.status-cancelled {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+}
+
+@media (max-width: 600px) {
+  .orders {
+    padding: 10px;
+  }
+
+  .order-item {
+    padding: 15px;
+  }
+
+  .status-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+    .status-dropdown {
+        width: 100%;
+    }
+
+    
+}       
+

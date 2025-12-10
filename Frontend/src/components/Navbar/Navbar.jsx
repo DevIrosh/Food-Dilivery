@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react'
 import './Navbar.css'
 import { assets } from '../../assets/assets'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { StoreContext } from '../../context/StoreContextValue'
 
 export const Navbar = ({ setShowLogin }) => {
 
     const [linking, setLinking] = useState('Home');
     const [showDropdown, setShowDropdown] = useState(false);
+    const navigate = useNavigate();
 
     const {token, setToken}=useContext(StoreContext);
     // logout function
@@ -15,6 +16,7 @@ export const Navbar = ({ setShowLogin }) => {
         localStorage.removeItem('token');
         setToken('');
         setShowDropdown(false);
+        navigate('/'); // Redirect to home page after logout
     }
 
     // get cart from value
@@ -50,7 +52,10 @@ export const Navbar = ({ setShowLogin }) => {
                     />
                     {showDropdown && (
                         <ul className="nav-profile-dropdown">
-                            <li onClick={() => setShowDropdown(false)}>
+                            <li onClick={() => {
+                                navigate('/myorders');
+                                setShowDropdown(false);
+                            }}>
                                 <img src={assets.bag_icon} alt="" />
                                 <p>Orders</p>
                             </li>

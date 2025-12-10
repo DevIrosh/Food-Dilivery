@@ -44,7 +44,7 @@ export const addFoodItem = async (req, res) => {
         });
 
         const savedFoodItem = await newFoodItem.save();
-        console.log('✅ Food Item Saved Successfully:', savedFoodItem._id);
+        console.log('Food Item Saved Successfully:', savedFoodItem._id);
         
         res.status(201).json({
             success: true,
@@ -53,7 +53,7 @@ export const addFoodItem = async (req, res) => {
         });
         
     } catch (error) {
-        console.log('❌ Error saving food item:', error);
+        console.log('Error saving food item:', error);
         res.status(500).json({ 
             success: false,
             message: "Failed to add food item", 

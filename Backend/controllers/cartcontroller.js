@@ -2,9 +2,17 @@ import usermodels from '../models/usermodels.js';
 
 const addtocart = async (req, res) => {    
     try {
-        const { userId, itemId } = req.body;
+        console.log('🛒 ADD TO CART REQUEST:');
+        console.log('Request Body:', req.body);
+        
+        const { itemId } = req.body;
+        const userId = req.body.userId; // This comes from auth middleware
+        
+        console.log('User ID:', userId);
+        console.log('Item ID:', itemId);
         
         if (!userId || !itemId) {
+            console.log('Missing required data - userId:', !!userId, 'itemId:', !!itemId);
             return res.status(400).json({ success: false, message: "User ID and Item ID are required" });
         }
 
@@ -42,7 +50,8 @@ const addtocart = async (req, res) => {
 
 const removefromcart = async (req, res) => {    
     try {
-        const { userId, itemId } = req.body;
+        const { itemId } = req.body;
+        const userId = req.body.userId; // This comes from auth middleware
         
         if (!userId || !itemId) {
             return res.status(400).json({ success: false, message: "User ID and Item ID are required" });
