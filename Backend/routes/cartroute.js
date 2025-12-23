@@ -12,7 +12,7 @@ console.log('Setting up cart/remove route');
 cartroute.post('/remove', authmiddleware, removefromcart);
 
 console.log('Setting up cart/get route');
-cartroute.post('/get', authmiddleware, getcart);
+cartroute.post('/get', authmiddleware, getcartitems);
 
 console.log('All cart routes defined');
 export default cartroute;
