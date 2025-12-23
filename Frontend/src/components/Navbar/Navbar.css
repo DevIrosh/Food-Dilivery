@@ -5,7 +5,7 @@
     justify-content: space-between;
     gap: 12px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 2400px;
     margin: 0 auto;
     box-sizing: border-box;
     position: relative;
@@ -34,11 +34,33 @@
     align-items: center;
     gap: 24px;
     font-size: 18px;
-    flex: 1; /* let links take the middle space */
-    justify-content: center; /* center links between logo and actions */
+    flex: 1;
+    justify-content: center;
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+/* Large screen nav-links adjustments */
+@media (min-width: 1440px) {
+    .nav-links{
+        gap: 32px;
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .nav-links{
+        gap: 40px;
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .nav-links{
+        gap: 48px;
+        font-size: 24px;
+    }
 }
 
 .nav-links li{
@@ -69,12 +91,74 @@
     }
 }
 
+/* Large screen optimizations */
+@media (min-width: 1440px) {
+    .navbar{
+        padding: 20px 40px;
+        max-width: 2800px;
+    }
+    .logo{
+        width: 160px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .navbar{
+        padding: 24px 60px;
+        max-width: 3200px;
+    }
+    .logo{
+        width: 180px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .navbar{
+        padding: 28px 80px;
+        max-width: 3600px;
+    }
+    .logo{
+        width: 200px;
+    }
+}
+
 /* right side of navbar get center*/
 .navbar-right{
     display: flex;
     align-items: center;
     gap: 16px;
     margin-left: auto; /* keep right group to the far right */
+}
+
+/* Large screen navbar-right adjustments */
+@media (min-width: 1440px) {
+    .navbar-right{
+        gap: 20px;
+    }
+    .login-button{
+        padding: 10px 18px;
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .navbar-right{
+        gap: 24px;
+    }
+    .login-button{
+        padding: 12px 20px;
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .navbar-right{
+        gap: 28px;
+    }
+    .login-button{
+        padding: 14px 24px;
+        font-size: 18px;
+    }
 }
 
 .login-button{

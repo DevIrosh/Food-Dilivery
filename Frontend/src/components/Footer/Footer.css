@@ -1,16 +1,19 @@
 .footer {
-    background-color: #f8f8f8;
-    padding: 20px 0;
+    background: rgba(215, 201, 195, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px 0 20px 0;
     text-align: center;
+    border-top: 1px solid rgba(215, 201, 195, 0.3);
+    box-shadow: 0 -2px 15px rgba(215, 201, 195, 0.2);
 }
 
 .footercontent {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 40px;
 }
 
 .footercontent-left,
@@ -35,40 +38,61 @@
 }
 
 .footercontent-social a {
-    margin: 0 5px;
+    margin: 0 8px;
     text-decoration: none;
-    color: #333;
+    color: #5a4a42;
+    transition: all 0.2s ease;
+    display: inline-block;
+    padding: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
 }
 
-.footercontent-social img {
-     width: 28px;
-     height: 28px;
-     object-fit: contain;
-     margin: 0 6px;
+.footercontent-social a:hover {
+    background: rgba(255, 111, 97, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 111, 97, 0.2);
+}
+
+.footercontent-left p,
+.footercontent-center p,
+.footercontent-right p {
+    color: #5a4a42;
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+.footercontent-center h3,
+.footercontent-right h3 {
+    color: #ff6f61;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-top: 0;
 }
 
 .footer-bottom {
-    margin-top: 20px;
-    padding: 10px 0;
-    border-top: 1px solid #eee;
+    margin-top: 30px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 111, 97, 0.2);
 }
 
 .footer-bottom p {
     margin: 0;
     font-size: 14px;
-    color: #666;
+    color: #5a4a42;
+    font-weight: 500;
 }   
-@media (max-width: 768px) {
+@media (min-width: 1200px) {
     .footercontent {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        padding: 0 60px;
     }
-    .footercontent-left,
-    .footercontent-center,
-    .footercontent-right,
-    .footercontent-social {
-        padding: 10px 0;
+}
+
+@media (min-width: 1600px) {
+    .footercontent {
+        max-width: 1800px;
+        padding: 0 80px;
     }
 }
     .footercontent-social img {
