@@ -77,7 +77,6 @@
     margin-bottom: 8px;
     position: relative; /* allow overlaying add/counter */
 }
-/* removed add/counter styles - simplified card */
 
 .foodItemAddIcon{
     position: absolute;

@@ -1,9 +1,12 @@
 .header {
     /* Use viewport height for more consistent header size and cover background */
     height: min(60vh, 520px);
-    margin: 30px auto;
-    background: url('/header_img.png') no-repeat center/cover; /* Background image */
+    margin: 10px auto 30px auto;
+    background: no-repeat center/cover; /* Background image */
     position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(215, 201, 195, 0.4);
 }
 
 
